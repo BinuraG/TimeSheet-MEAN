@@ -27,7 +27,7 @@ var constants = require('./config_constants');
 
 var GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || "958897176293-80mo4cecnpun4tg3bkbkcmk0562v7lgi.apps.googleusercontent.com";
 var GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || "iH_MS0Ydm1UbfEdZKIB_kXIS";
-var GOOGLE_CALLBACK = process.env.GOOGLE_CALLBACK || 'http://127.0.0.1:1313/oauth2callback';
+var GOOGLE_CALLBACK = process.env.GOOGLE_CALLBACK || 'https://platformer-test-timesheet.herokuapp.com/oauth2callback';
 
 var loginRedirect = '/';
 

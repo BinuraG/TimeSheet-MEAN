@@ -27,8 +27,8 @@
   left: 50%;
   transform: translateY(-52%) translateX(-50%);
   width: 480px;
-  font-weight: 600;
-  background: rgba(254, 254, 254, 0.9); }
+  font-weight: 600;}
+  /*background: rgba(254, 254, 254, 0.9); }*/
 
 .form-signin h1 {
   padding: 10px 85px;

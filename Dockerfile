@@ -4,7 +4,7 @@ FROM ubuntu:xenial
 MAINTAINER BINURA.G
 
 # EXPOSE 80 443 3000 35729 8080
-EXPOSE 1313
+EXPOSE 80
 
 # Set development environment as default
 ENV NODE_ENV production

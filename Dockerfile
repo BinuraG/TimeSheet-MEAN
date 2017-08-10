@@ -57,7 +57,7 @@ RUN npm install --quiet && npm cache clean
 COPY . /opt/mean.js
 
 # Run MEAN.JS server
-CMD npm install && npm start
+CMD npm install && npm start && service ngnix restart
 
 
 

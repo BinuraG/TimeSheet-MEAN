@@ -33,7 +33,8 @@ COPY nginx.key /etc/nginx/ssl
 COPY nginx.crt /etc/nginx/ssl
 
 # Start ngnix server
-CMD sudo service nginx start
+CMD service nginx start
+RUN service nginx start
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -61,7 +62,7 @@ RUN npm install --quiet && npm cache clean
 COPY . /opt/mean.js
 
 # Run MEAN.JS server
-CMD sudo service nginx restart && npm install && npm start
+CMD npm install && npm start
 
 
 

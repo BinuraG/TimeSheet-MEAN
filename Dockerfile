@@ -4,7 +4,7 @@ FROM ubuntu:xenial
 MAINTAINER BINURA.G
 
 # EXPOSE 80 443 3000 35729 8080
-EXPOSE 80
+EXPOSE 80 443
 
 # Set development environment as default
 ENV NODE_ENV production
@@ -61,7 +61,7 @@ RUN npm install --quiet && npm cache clean
 COPY . /opt/mean.js
 
 # Run MEAN.JS server
-CMD npm install && npm start && service nginx restart
+CMD sudo service nginx restart && npm install && npm start
 
 
 

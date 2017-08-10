@@ -26,11 +26,11 @@ RUN apt-get update -q  \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Overwrite the default file with the reverse proxy server settings
-COPY nginx/default /etc/nginx/sites-available
+COPY ./nginx_files/default /etc/nginx/sites-available
 
 # OpenSSL certs copy
-COPY nginx/nginx.key /etc/nginx/ssl
-COPY nginx/nginx.crt /etc/nginx/ssl
+COPY ./nginx_files/nginx.key /etc/nginx/ssl
+COPY ./nginx_files/nginx.crt /etc/nginx/ssl
 
 # Start ngnix server
 CMD sudo service nginx start

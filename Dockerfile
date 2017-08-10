@@ -24,6 +24,13 @@ RUN apt-get update -q  \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# nginx setup
+# Download and Install Nginx
+RUN apt-get install -y nginx  
+
+# Overwrite the default file with the reverse proxy server settings
+COPY default /etc/nginx/sites-available
+
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 RUN sudo apt-get install -yq nodejs \
@@ -44,9 +51,16 @@ WORKDIR /opt/mean.js
 
 COPY package.json /opt/mean.js/package.json
 
+
 RUN npm install --quiet && npm cache clean
 
 COPY . /opt/mean.js
 
 # Run MEAN.JS server
 CMD npm install && npm start
+
+# Start ngnix server
+CMD sudo service ngnix start
+
+
+

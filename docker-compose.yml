@@ -1,12 +1,5 @@
 version: '2'
 services:
-  nginx:
-    image: nginx
-    container_name: nginx
-    volumes:
-     - ./nginx-configs:/etc/nginx/conf.d
-    ports:
-     - "80:80"
   web:
     restart: always
     build:

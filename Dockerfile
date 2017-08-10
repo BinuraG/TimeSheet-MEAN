@@ -12,6 +12,7 @@ ENV NODE_ENV production
 # Install Utilities
 RUN apt-get update -q  \
  && apt-get install -yqq \
+ nginx \
  curl \
  git \
  ssh \
@@ -23,10 +24,6 @@ RUN apt-get update -q  \
  apt-utils \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# nginx setup
-# Download and Install Nginx
-RUN apt-get install -y nginx  
 
 # Overwrite the default file with the reverse proxy server settings
 COPY default /etc/nginx/sites-available
@@ -60,7 +57,7 @@ COPY . /opt/mean.js
 CMD npm install && npm start
 
 # Start ngnix server
-CMD sudo service ngnix start
+CMD sudo service nginx start
 
 
 

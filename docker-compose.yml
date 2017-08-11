@@ -11,6 +11,8 @@ services:
      - DB_1_PORT_27017_TCP_ADDR=db
     depends_on:
      - db
+    ports:
+     - "1313:80"
   nginx:
     restart: always
     build:
@@ -19,7 +21,7 @@ services:
     container_name: nginx-container
     ports:
      - "80:80"
-     - "1313:443"
+     - "443:443"
     depends_on:
      - web
   db:

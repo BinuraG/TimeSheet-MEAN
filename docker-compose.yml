@@ -1,11 +1,5 @@
 version: '2'
 services:
-  nginx-server:
-    image: nginx
-    volumes:
-      - default:/etc/nginx/sites-available/
-      - nginx.key:/etc/nginx/ssl/
-      - nginx.crt:/etc/nginx/ssl/
   web:
     restart: always
     build:

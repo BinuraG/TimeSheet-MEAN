@@ -31,6 +31,7 @@ ADD default /etc/nginx/sites-available/
 # OpenSSL certs copy
 ADD nginx.key /etc/nginx/ssl
 ADD nginx.crt /etc/nginx/ssl
+CMD ["nginx", "-g", "daemon off;"]
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -58,7 +59,7 @@ RUN npm install --quiet && npm cache clean
 COPY . /opt/mean.js
 
 # Run MEAN.JS server
-CMD ["nginx", "-g", "daemon off;"] && npm install && npm start
-# CMD npm install && npm start
+# CMD ["nginx", "-g", "daemon off;"] && npm install && npm start
+CMD npm install && npm start
 
 

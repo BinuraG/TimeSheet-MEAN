@@ -13,6 +13,12 @@ services:
      - DB_1_PORT_27017_TCP_ADDR=db
     depends_on:
      - db
+  nginx:
+    restart: always
+    build:
+     context: .
+     dockerfile: Dockerfile-nginx
+    container_name: nginx-container
   db:
     image: mongo:3.2
     ports:

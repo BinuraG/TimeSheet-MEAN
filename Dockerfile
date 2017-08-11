@@ -59,7 +59,8 @@ RUN npm install --quiet && npm cache clean
 COPY . /opt/mean.js
 
 # Run MEAN.JS server
-# CMD ["nginx", "-g", "daemon off;"] && npm install && npm start
+CMD ["nginx", "-g", "daemon off;"]
+#CMD ["nginx", "-g", "daemon off;"] && npm install && npm start
 CMD npm install && npm start
 
 

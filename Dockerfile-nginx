@@ -10,19 +10,16 @@ MAINTAINER BINURA.G
 # Install Nginx
 
 # Install Utilities
-RUN apt-get update -q  \
- && apt-get install -yqq \
- nginx \
- apt-utils \
- && apt-get clean \
+RUN apt-get update -q
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get nginx -y
 
 # Overwrite the default file with the reverse proxy server settings
-COPY default /etc/nginx/sites-available
+ADD default /etc/nginx/sites-available
 
 # OpenSSL certs copy
-COPY nginx.key /etc/nginx/ssl
-COPY nginx.crt /etc/nginx/ssl
+ADD nginx.key /etc/nginx/ssl
+ADD nginx.crt /etc/nginx/ssl
 
 # Append "daemon off;" to the beginning of the configuration
 #RUN echo "daemon off;" >> /etc/nginx/nginx.conf
@@ -32,6 +29,6 @@ EXPOSE 80 443
 
 # Set the default command to execute
 # when creating a new container
-#CMD service nginx start
+CMD service nginx start
 
-CMD ["nginx", "-g", "daemon off;"]
+#CMD ["nginx", "-g", "daemon off;"]

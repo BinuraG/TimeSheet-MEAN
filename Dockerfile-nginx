@@ -9,15 +9,21 @@ MAINTAINER BINURA.G
 
 # Install Nginx
 
-# Update the repository
+# Install Utilities
 RUN apt-get update -q  \
  && apt-get install -yqq \
-
-# Install necessary tools
-RUN apt-get install -y nano wget dialog net-tools
-
-# Download and Install Nginx
-RUN apt-get install -y nginx  
+ nginx \
+ curl \
+ git \
+ ssh \
+ gcc \
+ make \
+ build-essential \
+ libkrb5-dev \
+ sudo \
+ apt-utils \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Overwrite the default file with the reverse proxy server settings
 COPY default /etc/nginx/sites-available

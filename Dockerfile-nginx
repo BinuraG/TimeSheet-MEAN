@@ -33,7 +33,7 @@ ADD nginx.key /etc/nginx/ssl/
 ADD nginx.crt /etc/nginx/ssl/
 
 # Append "daemon off;" to the beginning of the configuration
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+#RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Expose ports
 EXPOSE 80 443

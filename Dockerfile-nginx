@@ -27,6 +27,8 @@ RUN apt-get update -q  \
 
 # Overwrite the default file with the reverse proxy server settings
 ADD default /etc/nginx/sites-available/
+ADD default /etc/nginx/sites-enabled/
+
 RUN mkdir /etc/nginx/ssl
 # OpenSSL certs copy
 ADD nginx.key /etc/nginx/ssl/
@@ -36,7 +38,8 @@ ADD nginx.crt /etc/nginx/ssl/
 #RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Expose ports
-EXPOSE 80 443
+EXPOSE 80
+EXPOSE 443
 
 # Set the default command to execute
 # when creating a new container

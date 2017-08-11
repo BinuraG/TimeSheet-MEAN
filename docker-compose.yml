@@ -12,7 +12,7 @@ services:
     depends_on:
      - db
     ports:
-     - "1313:80"
+     - "1313:1313"
   nginx:
     restart: always
     build:
@@ -20,8 +20,8 @@ services:
      dockerfile: Dockerfile-nginx
     container_name: nginx-container
     ports:
-     - "80:80"
-     - "443:443"
+     - "80"
+     - "443"
     depends_on:
      - web
   db:

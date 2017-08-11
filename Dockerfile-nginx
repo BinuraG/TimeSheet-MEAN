@@ -4,10 +4,8 @@
 ############################################################
 
 # Set the base image to Ubuntu
-FROM ubuntu
-
-# File Author / Maintainer
-MAINTAINER Maintaner Name
+FROM ubuntuxenial
+MAINTAINER BINURA.G
 
 # Install Nginx
 
@@ -29,7 +27,6 @@ COPY default /etc/nginx/sites-available
 # OpenSSL certs copy
 COPY nginx.key /etc/nginx/ssl
 COPY nginx.crt /etc/nginx/ssl
-
 
 # Append "daemon off;" to the beginning of the configuration
 #RUN echo "daemon off;" >> /etc/nginx/nginx.conf

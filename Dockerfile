@@ -26,11 +26,11 @@ RUN apt-get update -q  \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Overwrite the default file with the reverse proxy server settings
-RUN ["mv"," "default", "/etc/nginx/sites-available/"]
+#RUN ["mv"," "default", "/etc/nginx/sites-available/"]
 
 # OpenSSL certs copy
-RUN mv -f nginx.key /etc/nginx/ssl/
-RUN mv -f nginx.crt /etc/nginx/ssl/
+#RUN mv -f nginx.key /etc/nginx/ssl/
+#RUN mv -f nginx.crt /etc/nginx/ssl/
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -58,7 +58,7 @@ RUN npm install --quiet && npm cache clean
 COPY . /opt/mean.js
 
 # Run MEAN.JS server
-CMD ["nginx", "-g", "daemon off;"] && npm install && npm start
-
+# CMD ["nginx", "-g", "daemon off;"] && npm install && npm start
+CMD npm install && npm start
 
 

@@ -4,7 +4,7 @@ FROM ubuntu:xenial
 MAINTAINER BINURA.G
 
 # EXPOSE 80 443 3000 35729 8080
-EXPOSE 80 443
+EXPOSE 80
 
 # Set development environment as default
 ENV NODE_ENV production
@@ -12,6 +12,7 @@ ENV NODE_ENV production
 # Install Utilities
 RUN apt-get update -q  \
  && apt-get install -yqq \
+ nginx \
  curl \
  git \
  ssh \
@@ -25,11 +26,13 @@ RUN apt-get update -q  \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Overwrite the default file with the reverse proxy server settings
-#RUN mv -f default /etc/nginx/sites-available/
+ADD default /etc/nginx/sites-available
 
-# OpenSSL certs copy
-#RUN mv -f nginx.key /etc/nginx/ssl/
-#RUN mv -f nginx.crt /etc/nginx/ssl/
+ADD nginx.key /etc/nginx/
+ADD nginx.crt /etc/nginx/
+
+# Start ngnix server
+CMD sudo service nginx start
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -40,8 +43,10 @@ RUN sudo apt-get install -yq nodejs \
 # Install MEAN.JS Prerequisites
 RUN npm install --quiet -g gulp bower yo mocha karma-cli pm2 && npm cache clean
 
-RUN mkdir -p /opt/mean.js/public/lib
-WORKDIR /opt/mean.js
+CMD ["nginx", "-g", "daemon off;"]
+
+#RUN mkdir -p /opt/mean.js/public/lib
+#WORKDIR /opt/mean.js
 
 # Copies the local package.json file to the container
 # and utilities docker container cache to not needing to rebuild
@@ -49,13 +54,15 @@ WORKDIR /opt/mean.js
 # when the local package.json file changes.
 # Install npm packages
 
-COPY package.json /opt/mean.js/package.json
+#COPY package.json /opt/mean.js/package.json
 
-COPY . /opt/mean.js
+
+#RUN npm install --quiet && npm cache clean
+
+#COPY . /opt/mean.js
 
 # Run MEAN.JS server
-#CMD ["nginx", "-g", "daemon off;"] && npm install && npm start
-CMD npm install && npm start
+#CMD npm install && npm start
 
 
 

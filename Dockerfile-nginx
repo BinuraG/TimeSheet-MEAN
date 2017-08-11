@@ -13,14 +13,6 @@ MAINTAINER BINURA.G
 RUN apt-get update -q  \
  && apt-get install -yqq \
  nginx \
- curl \
- git \
- ssh \
- gcc \
- make \
- build-essential \
- libkrb5-dev \
- sudo \
  apt-utils \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -40,4 +32,6 @@ EXPOSE 80 443
 
 # Set the default command to execute
 # when creating a new container
-CMD service nginx start
+#CMD service nginx start
+
+CMD ["nginx", "-g", "daemon off;"]

@@ -6,8 +6,6 @@ services:
      context: .
      dockerfile: Dockerfile
     container_name: timesheetapp
-    ports:
-     - "1313:1313"
     environment:
      - NODE_ENV=production
      - DB_1_PORT_27017_TCP_ADDR=db
@@ -21,7 +19,7 @@ services:
     container_name: nginx-container
     ports:
      - "80:80"
-     - "443:443"
+     - "1313:443"
     depends_on:
      - web
   db:

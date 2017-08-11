@@ -20,8 +20,8 @@ services:
      dockerfile: Dockerfile-nginx
     container_name: nginx-container
     ports:
-     - ":80"
-     - ":443"
+     - "1313:80"
+     - "443:443"
   db:
     image: mongo:3.2
     ports:

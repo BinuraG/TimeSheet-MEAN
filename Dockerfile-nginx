@@ -4,7 +4,7 @@
 ############################################################
 
 # Set the base image to Ubuntu
-FROM ubuntuxenial
+FROM ubuntu:xenial
 MAINTAINER BINURA.G
 
 # Install Nginx

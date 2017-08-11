@@ -20,8 +20,8 @@ services:
      dockerfile: Dockerfile-nginx
     container_name: nginx-container
     ports:
-     - "1313:80"
-     - "1313:443"
+     - "80:80"
+     - "443:443"
     depends_on:
      - web
   db:

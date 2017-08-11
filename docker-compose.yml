@@ -7,8 +7,7 @@ services:
      - "443:443"
      - "80:80"
     volumes:
-      - nginx.key:/etc/nginx/
-      - nginx.crt:/etc/nginx/
+      - ./ssl_certs:/etc/nginx/
     environment:
       - VIRTUAL_PORT=1313
   web:

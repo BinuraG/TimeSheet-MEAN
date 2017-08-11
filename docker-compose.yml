@@ -1,5 +1,13 @@
 version: '2'
 services:
+  nginx:
+    restart: always
+    build:
+     context: .
+     dockerfile: Dockerfile-nginx
+    container_name: nginx-container
+    ports:
+     - "443:443"
   web:
     restart: always
     build:
@@ -13,12 +21,6 @@ services:
      - db
     ports:
      - "1313:1313"
-  nginx:
-    restart: always
-    build:
-     context: .
-     dockerfile: Dockerfile-nginx
-    container_name: nginx-container
   db:
     image: mongo:3.2
     ports:

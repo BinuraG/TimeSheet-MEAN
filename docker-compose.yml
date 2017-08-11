@@ -1,7 +1,6 @@
 version: '2'
 services:
   nginx-server:
-  	restart: always
     image: nginx
     volumes:
       - default:/etc/nginx/sites-available/

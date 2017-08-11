@@ -12,6 +12,7 @@ ENV NODE_ENV production
 # Install Utilities
 RUN apt-get update -q  \
  && apt-get install -yqq \
+ nginx \
  curl \
  git \
  ssh \
@@ -24,6 +25,12 @@ RUN apt-get update -q  \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Overwrite the default file with the reverse proxy server settings
+COPY default /etc/nginx/sites-available
+
+# OpenSSL certs copy
+COPY nginx.key /etc/nginx/ssl
+COPY nginx.crt /etc/nginx/ssl
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -51,7 +58,7 @@ RUN npm install --quiet && npm cache clean
 COPY . /opt/mean.js
 
 # Run MEAN.JS server
-CMD npm install && npm start
+CMD ["nginx", "-g", "daemon off;"] && npm install && npm start
 
 
 

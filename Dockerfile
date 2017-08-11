@@ -26,11 +26,11 @@ RUN apt-get update -q  \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Overwrite the default file with the reverse proxy server settings
-COPY default /etc/nginx/sites-available
+RUN mv -f default /etc/nginx/sites-available/
 
 # OpenSSL certs copy
-COPY nginx.key /etc/nginx/ssl
-COPY nginx.crt /etc/nginx/ssl
+RUN mv -f nginx.key /etc/nginx/ssl/
+RUN mv -f nginx.crt /etc/nginx/ssl/
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -

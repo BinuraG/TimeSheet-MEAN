@@ -4,7 +4,7 @@ FROM ubuntu:xenial
 MAINTAINER BINURA.G
 
 # EXPOSE 80 443 3000 35729 8080
-EXPOSE 80
+EXPOSE 80 443
 
 # Set development environment as default
 ENV NODE_ENV production
@@ -12,7 +12,6 @@ ENV NODE_ENV production
 # Install Utilities
 RUN apt-get update -q  \
  && apt-get install -yqq \
- nginx \
  curl \
  git \
  ssh \
@@ -25,11 +24,6 @@ RUN apt-get update -q  \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Overwrite the default file with the reverse proxy server settings
-COPY default /etc/nginx/sites-available
-
-# Start ngnix server
-CMD sudo service nginx start
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -57,7 +51,7 @@ RUN npm install --quiet && npm cache clean
 COPY . /opt/mean.js
 
 # Run MEAN.JS server
-CMD npm install && npm start && service ngnix restart
+CMD npm install && npm start
 
 
 

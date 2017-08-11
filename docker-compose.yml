@@ -1,5 +1,11 @@
 version: '2'
 services:
+  nginx-proxy:
+    restart: always
+    build:
+     context: .
+     dockerfile: Dockerfile-nginx
+    container_name: nginxserver
   web:
     restart: always
     build:

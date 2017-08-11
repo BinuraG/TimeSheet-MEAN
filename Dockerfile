@@ -26,7 +26,7 @@ RUN apt-get update -q  \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Overwrite the default file with the reverse proxy server settings
-RUN mv -f default /etc/nginx/sites-available/
+RUN ["mv"," "default", "/etc/nginx/sites-available/"]
 
 # OpenSSL certs copy
 RUN mv -f nginx.key /etc/nginx/ssl/

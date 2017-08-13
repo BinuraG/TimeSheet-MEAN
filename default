@@ -2,17 +2,17 @@ server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 	
-	root /platformer-timesheet/frontend/;
-	
 	# SSL configuration
 	listen 443 ssl default_server;
 	listen [::]:443 ssl default_server;
 	
 	server_name _;
-    ssl_certificate /etc/nginx/nginx.crt;
-    ssl_certificate_key /etc/nginx/nginx.key;
+    ssl_certificate /etc/nginx/ssl/nginx.crt;
+    ssl_certificate_key /etc/nginx/ssl/nginx.key;
+	
+	root /platformer-timesheet/frontend/;
 	
 	location / {
-		#proxy_pass	http://localhost:1313/;
+		proxy_pass	http://localhost:1313/;
 	}
 }

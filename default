@@ -10,8 +10,6 @@ server {
     ssl_certificate /etc/nginx/ssl/nginx.crt;
     ssl_certificate_key /etc/nginx/ssl/nginx.key;
 	
-	root /platformer-timesheet/frontend/;
-	
 	location / {
 		proxy_pass	http://localhost:1313/;
 	}

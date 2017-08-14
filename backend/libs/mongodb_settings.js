@@ -20,10 +20,10 @@ var MongoClient = require('mongodb').MongoClient;
 var testDataImporter = require('./test_data_importer');
 var log = require('./logger');
 
-var mongodbUrl = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/homogen';
+var mongodbUrl = process.env.MONGOLAB_URI || 'mongodb://user:user_pw@ds129143.mlab.com:29143/timesheet';
 var mongoDbSessionStorageUrl = process.env.MONGOLAB_URI
                                  || process.env.MONGO_SESSION_STORAGE_URL
-                                 || 'mongodb://localhost:27017/homogen-sessions';
+                                 || 'mongodb://user:user_pw@ds129143.mlab.com:29143/timesheet';
 
 var timelogCollectionName = 'timelogs';
 var projectCollectionName = 'projects';

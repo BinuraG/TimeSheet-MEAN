@@ -1,20 +1,14 @@
 platformer™   <b>timesheet</b>
-===================
-platformer-timesheet web-app
-<b>Documentation</b>
-___________________
-
-##Contents
-
-[TOC]
-
-----------
-
+===============================
+### platformer-timesheet web-app
+### <b>Documentation</b>
+#### @Author [Binura Gunasekara](mailto:binura.g@platformer.com)
+#### @LastModified: 30.09.2017
 
 Introduction
 -------------
 
-The platformer™ timesheet is a customized port of the Open-Source<i>timesheet web application from Mifort.
+The platformer timesheet is a customized port of the Open-Source<i>timesheet web application from Mifort.
 
 >**Features:**
 
@@ -24,32 +18,19 @@ The platformer™ timesheet is a customized port of the Open-Source<i>timesheet 
  >- Well-designed report period configuration 
  >- Fast report generation with smart filtering and validation 
  >- E-mail notification
- >- Authoriza.tion by Google
-
-----------
-
+ >- Authorization by Google
 
 Application Framework
 -------------------
-This application is a MEAN Stack:
- - Mongodb
- - ExpressJS
- - Angular2+
- - NodeJS
 
-###Dependencies
+- Dockerized and build-able using Docker-compose
+- 3 Containers (web, mongo, nginx)
+- MEAN Stack
+
+### Dependencies 
 <i>package.json:</i>
 
 ```
- {
-  "name": "platformer-timesheet",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "postinstall": "grunt build",
-    "start": "node app.js"
-  },
-  "license": "Apache-2.0",
   "dependencies": {
     "async": "^2.3.0",
     "body-parser": "^1.14.2",
@@ -88,22 +69,34 @@ This application is a MEAN Stack:
     "underscore": "^1.8.3",
     "validator": "^4.5.0",
     "winston": "^2.1.1"
-  },
-  "devDependencies": {
+  }
+  
+  "devDependencies": 
     "nightwatch": "^0.8.18"
   }
-}
-```
-###Installing Dependencies
-// TBD
 
-Deployment
------------------
-###Local
-###Standard MEAN Deployment
-###Google Cloud Platform
-####VM Instance
-####Container
+```
+
+
+Deployment (Ubuntu 16 LTS)
+-------
+
+1. Install npm, nodejs and nodejs-legacy through apt-get install
+2. Install Docker (link)[https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04]
+3. Install Docker-Compose (link)[https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-16-04]
+4. Navigate to the project root and build 3 docker images using `docker-compose build`
+5. Run the containers using `docker-compose up`
+
+
+### To-Do
+
+1. Add SSL Certification for https. 
+> Add certs to ./nginx directory.
+> edit ./nginx.conf to use the certs.
+> edit ./backend/libs/authentication.js --> Callback URI to https from http (current).
+2. Some dependencies are under deprecation. Identify and update.
+
+
 
 
 

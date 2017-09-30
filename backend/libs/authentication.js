@@ -25,9 +25,9 @@ var users = require('../user');
 var registration = require('./registration');
 var constants = require('./config_constants');
 
-var GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || "958897176293-17muocomqv63ptkbj8d5tqtr9a1e9orj.apps.googleusercontent.com";
-var GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || "hSTDibc3CxeXIstBqyp2CFB-";
-var GOOGLE_CALLBACK = process.env.GOOGLE_CALLBACK || 'https://platformer-test-timesheet.herokuapp.com/oauth2callback';
+var GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || "2559320393-a8no4l5p5r5ti8ftt3tbbbm8d84n50kd.apps.googleusercontent.com";
+var GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || "J6fJwvWXLhLuEpSmknZ_33OT";
+var GOOGLE_CALLBACK = process.env.GOOGLE_CALLBACK || 'http://timesheet.platformer.com/oauth2callback';
 
 var loginRedirect = '/';
 

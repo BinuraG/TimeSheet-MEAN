@@ -1,35 +1,23 @@
 version: '2'
 services:
+  nginx:
+    build: ./nginx
+    links:
+     - web   
+    ports:
+     - "80:80"
+     - "443:443"
   web:
-    restart: always
-    build:
-     context: .
-     dockerfile: Dockerfile
-    container_name: timesheetapp
+    build: .
     ports:
      - "1313:1313"
     environment:
      - NODE_ENV=production
-     - DB_1_PORT_27017_TCP_ADDR=db
-    depends_on:
-     - db
-  nginx:
-    restart: always
-    build:
-     context: .
-     dockerfile: Dockerfile-nginx
-    container_name: nginx-container
-  db:
-    image: mongo:3.2
+    links:
+     - mongo
+  mongo:
+    image: mongo
+    volumes:
+     - /data/mongodb/db:/data/db
     ports:
      - "27017:27017"
-    restart: always
-    volumes_from:
-      - db-data
-  db-data:
-    image: mongo:3.2
-    volumes:
-      - /data/db
-      - /var/lib/mongodb
-      - /var/log/mongodb
-    entrypoint: /bin/true

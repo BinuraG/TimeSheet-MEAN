@@ -1,61 +1,14 @@
-# PLATFORMER-TIMESHEET
+FROM mhart/alpine-node:latest
 
-FROM ubuntu:xenial
-MAINTAINER BINURA.G
+MAINTAINER Binura Gunasekara
 
-# EXPOSE 80 443 3000 35729 8080
-EXPOSE 80 443
+ADD package.json /tmp/package.json
+RUN cd /tmp && npm install
+RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
 
-# Set development environment as default
-ENV NODE_ENV production
+WORKDIR /opt/app
+ADD . /opt/app
 
-# Install Utilities
-RUN apt-get update -q  \
- && apt-get install -yqq \
- curl \
- git \
- ssh \
- gcc \
- make \
- build-essential \
- libkrb5-dev \
- sudo \
- apt-utils \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+EXPOSE 1313
 
-# Overwrite the default file with the reverse proxy server settings
-#RUN mv -f default /etc/nginx/sites-available/
-
-# OpenSSL certs copy
-#RUN mv -f nginx.key /etc/nginx/ssl/
-#RUN mv -f nginx.crt /etc/nginx/ssl/
-
-# Install nodejs
-RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-RUN sudo apt-get install -yq nodejs \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Install MEAN.JS Prerequisites
-RUN npm install --quiet -g gulp bower yo mocha karma-cli pm2 && npm cache clean
-
-RUN mkdir -p /opt/mean.js/public/lib
-WORKDIR /opt/mean.js
-
-# Copies the local package.json file to the container
-# and utilities docker container cache to not needing to rebuild
-# and install node_modules/ everytime we build the docker, but only
-# when the local package.json file changes.
-# Install npm packages
-
-COPY package.json /opt/mean.js/package.json
-
-COPY . /opt/mean.js
-
-# Run MEAN.JS server
-#CMD ["nginx", "-g", "daemon off;"] && npm install && npm start
-CMD npm install && npm start
-
-
-
+CMD ["npm", "start"]

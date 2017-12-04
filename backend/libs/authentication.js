@@ -27,7 +27,7 @@ var constants = require('./config_constants');
 
 var GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || "2559320393-a8no4l5p5r5ti8ftt3tbbbm8d84n50kd.apps.googleusercontent.com";
 var GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || "J6fJwvWXLhLuEpSmknZ_33OT";
-var GOOGLE_CALLBACK = process.env.GOOGLE_CALLBACK || 'http://timesheet.platformer.com/oauth2callback';
+var GOOGLE_CALLBACK = process.env.GOOGLE_CALLBACK || 'https://timesheet.platformer.com/oauth2callback';
 
 var loginRedirect = '/';
 
